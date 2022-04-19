@@ -1,7 +1,7 @@
 # PIES-PersoNOW
 Equipe:
 
-494184 – Maria Alice de Souza Macedo - 
+494184 – Maria Alice de Souza Macedo - Alimcedo
 
 497017 – Maria Eduarda Silva Vieira - Maria-Eduarda-080902
 
