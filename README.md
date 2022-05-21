@@ -14,3 +14,5 @@ O PersoNOW irá ajudar pessoas que gostam de praticar exercícios físicos a se 
 
 
 Link para o prototipo no Figma : https://www.figma.com/file/DMy1jJcDeO3vrK30uEcfuK/PERSONOW-WEB?node-id=0%3A1
+
+Link para o Trello: https://trello.com/b/yh9HJRRx/template-kanban
