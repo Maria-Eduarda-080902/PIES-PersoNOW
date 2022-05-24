@@ -5,7 +5,6 @@ header('Access-Control-Allow-Methods: GET, POST');
 header("Access-Control-Allow-Headers: X-Requested-With");
 header("Access-Control-Allow-Headers: Content-Type");
 
-include_once '../models/cliente.php';
 include_once '../dao/cadastrar-cliente.php';
 include_once '../dao/contar-clientes.php';
 include_once '../dao/login-cliente.php';
@@ -18,6 +17,9 @@ include_once '../dao/login-cliente.php';
     if($func === 'logar'){
         logar($data);
     }
+    elseif ($func === 'cadastrar') {
+        cadastrar($data);
+    }
     else if($func === 'nextId'){
         echo getProximoId();
     }
@@ -29,16 +31,14 @@ include_once '../dao/login-cliente.php';
         logarCliente($email, $senha);
     }
 
-//    function cadastrarCliente(){
-//        $request_body = file_get_contents('php://input');
-//        $data = json_decode($request_body, true);
+    function cadastrar($data){
+        $id = getProximoId();
+        cadastro($data, $id);
+    }
 
+    function finalizarCadastro(){
 
-//        $nome = $data['nome'];
-//        $email = $data['email'];
-//        $senha = $data['senha'];
-//        cadastroDAO();
-//    }
+    }
 
     function getProximoId(){
         return contarClientes() + 1;
