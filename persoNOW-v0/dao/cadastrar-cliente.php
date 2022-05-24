@@ -1,39 +1,28 @@
 <?php
 
-include_once '../models/cliente.php';
-
-    function cadastroDAO(Cliente $cli){
-        require_once 'connection.php';
-        
-
-        if(!empty($cli)){
+    function cadastro($data, $id){
             try {
-                $sql = "INSERT INTO cliente(id, nome, email, senha, cpf, telefone, genero, data_nascimento, bio, peso, altura)
-                            VALUES(:id, :nome, :email, :senha, :cpf, :telefone, :genero, :datanasc, :bio, :peso, :altura)";
-        
+               require_once 'connection.php';
+
+                $sql = "INSERT INTO cliente(id, nome, email, senha, genero, data_nascimento, peso, altura)
+                            VALUES(:id, :nome, :email, :senha, :genero, :datanasc, :peso, :altura)";
+
                 $stmt = $pdo->prepare($sql);
         
-                $stmt->bindValue(":id", $cli->getId());
-                $stmt->bindValue(":nome", $cli->getNome());
-                $stmt->bindValue(":email", $cli->getEmail());
-                $stmt->bindValue(":senha", $cli->getSenha());
-                $stmt->bindValue(":cpf",  $cli->getCpf());
-                $stmt->bindValue(":telefone", $cli->getTelefone());
-                $stmt->bindValue(":genero", $cli->getGenero());
-                $stmt->bindValue(":bio", $cli->getBio());
-                $stmt->bindValue('datanasc', $cli->getDataNasc());
-                $stmt->bindValue(":peso", $cli->getPeso());
-                $stmt->bindValue(":altura", $cli->getAltura());
+                $stmt->bindValue(":id", $id);
+                $stmt->bindValue(":nome", $data['nome']);
+                $stmt->bindValue(":email", $data['email']);
+                $stmt->bindValue(":senha", $data['senha']);
+                $stmt->bindValue(":genero", $data['genero']);
+                $stmt->bindValue('datanasc', $data['data_nasc']);
+                $stmt->bindValue(":peso", $data['peso']);
+                $stmt->bindValue(":altura", $data['altura']);
         
                 if($stmt->execute()){
                     echo 'irru deu bão';
                 }
-            } catch (\Exception $e) {
-                echo 'deu ruim :/';
+            } catch (Exception $e) {
+                echo $e;
             }
         }
-        else{
-            header("Loation: crashcourse.php?msgErro=Erro de acesso.");
-        }
-    }
 ?>
