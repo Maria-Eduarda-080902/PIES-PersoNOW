@@ -1,0 +1,77 @@
+-- Database: personow
+
+-- DROP DATABASE IF EXISTS personow;
+
+CREATE DATABASE personow
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+	
+	
+
+CREATE TABLE cliente(id int NOT NULL,
+						nome varchar(50) NOT NULL,
+						email varchar(40) NOT NULL,
+						senha varchar(20) NOT NULL,
+						cpf varchar(11) NOT NULL,
+						telefone varchar(12),
+						genero varchar(15) NOT NULL,
+						bio varchar(100),
+						data_nascimento date NOT NULL,
+						altura int NOT NULL,
+						peso float NOT NULL,
+						PRIMARY KEY(id));
+						
+	CREATE TABLE personal(id int NOT NULL,
+						nome varchar(50) NOT NULL,
+						email varchar(40) NOT NULL,
+						senha varchar(20) NOT NULL,
+						cpf varchar(11) NOT NULL,
+						telefone varchar(12),
+						genero varchar(15) NOT NULL,
+						data_nascimento date NOT NULL,
+						bio varchar(100),
+						media_avaliacoes float NOT NULL,
+						PRIMARY KEY(id));
+						
+						
+	CREATE TABLE avaliacao(id int NOT NULL,
+						   id_cliente int NOT NULL,
+						   id_personal int NOT NULL,
+						   avaiacao int NOT NULL,
+						   texto varchar(500),
+						   PRIMARY KEY(id))
+						  
+	CREATE TABLE mensagem(id int NOT NULL,
+						   id_cliente int NOT NULL,
+						   id_personal int NOT NULL,
+						   data date NOT NULL,
+						   texto varchar(500),
+						   PRIMARY KEY(id))
+						   
+	ALTER TABLE avaliacao ADD FOREIGN KEY (id_cliente) REFERENCES cliente(id)
+	ALTER TABLE avaliacao ADD FOREIGN KEY (id_personal) REFERENCES personal(id)
+	
+	ALTER TABLE mensagem ADD FOREIGN KEY (id_cliente) REFERENCES cliente(id)
+	ALTER TABLE mensagem ADD FOREIGN KEY (id_personal) REFERENCES personal(id)
+	
+	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
+				 VALUES(1, 'eduarda', 'bla@bla','123','11111','953288','F','bio');
+	
+	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
+				 VALUES(2, 'alice', 'bla@bla','123','11111','953288','F','bio');
+	
+	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
+				 VALUES(3, 'gabriel', 'bla@bla','123','11111','953288','F','bio');
+	
+	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
+				 VALUES(0, 'wesley', 'bla@bla','123','11111','953288','M','bio',0);
+	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
+				 VALUES(1, 'cris', 'bla@bla','123','11111','953288','F','bio',0);
+	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
+				 VALUES(2, 'carlos', 'bla@bla','123','11111','953288','F','bio',0);
+	
