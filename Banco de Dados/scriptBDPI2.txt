@@ -59,19 +59,12 @@ CREATE TABLE cliente(id int NOT NULL,
 	ALTER TABLE mensagem ADD FOREIGN KEY (id_cliente) REFERENCES cliente(id)
 	ALTER TABLE mensagem ADD FOREIGN KEY (id_personal) REFERENCES personal(id)
 	
-	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
-				 VALUES(1, 'eduarda', 'bla@bla','123','11111','953288','F','bio');
-	
-	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
-				 VALUES(2, 'alice', 'bla@bla','123','11111','953288','F','bio');
-	
-	INSERT INTO cliente(id, nome,email,senha,cpf,telefone,sexo,bio)
-				 VALUES(3, 'gabriel', 'bla@bla','123','11111','953288','F','bio');
-	
-	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
-				 VALUES(0, 'wesley', 'bla@bla','123','11111','953288','M','bio',0);
-	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
-				 VALUES(1, 'cris', 'bla@bla','123','11111','953288','F','bio',0);
-	INSERT INTO personal(id, nome,email,senha,cpf,telefone,sexo,bio,media_avaliacoes)
-				 VALUES(2, 'carlos', 'bla@bla','123','11111','953288','F','bio',0);
+	CREATE SEQUENCE cliente_id_seq OWNED BY cliente.id;
+	ALTER TABLE cliente ALTER COLUMN id SET DEFAULT nextval('cliente_id_seq'); 
+	UPDATE cliente SET id = nextval('cliente_id_seq');
+
+
+	CREATE SEQUENCE personal_id_seq OWNED BY personal.id;
+	ALTER TABLE personal ALTER COLUMN id SET DEFAULT nextval('personal_id_seq'); 
+	UPDATE personal SET id = nextval('personal_id_seq');
 	
