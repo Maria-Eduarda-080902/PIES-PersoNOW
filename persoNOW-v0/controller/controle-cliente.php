@@ -20,9 +20,6 @@ include_once '../dao/login-cliente.php';
     elseif ($func === 'cadastrar') {
         cadastrar($data);
     }
-    else if($func === 'nextId'){
-        echo getProximoId();
-    }
 
     function logar($data){
         $email = $data['email'];
@@ -32,16 +29,7 @@ include_once '../dao/login-cliente.php';
     }
 
     function cadastrar($data){
-        $id = getProximoId();
-        cadastro($data, $id);
-    }
-
-    function finalizarCadastro(){
-
-    }
-
-    function getProximoId(){
-        return contarClientes() + 1;
+        cadastroCliente($data);
     }
 
 
